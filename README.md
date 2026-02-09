@@ -93,5 +93,3 @@ Run only `launcher.vbs`. The remaining steps (download, persistence, and in‑me
 - **Process Detection:** Monitor suspicious chains → `wscript.exe → powershell.exe → msbuild.exe`.
 - **Binary Restrictions (LotL):** Block `MSBuild.exe` and native compilers via **AppLocker** or **WDAC**.
 - **Logging:** Enable **PowerShell Script Block Logging (Event ID 4104)** to capture dynamic script execution.
-
-Assim o tutorial fica **perfeito e completo**, com a etapa de transferência dos arquivos para a máquina atacante antes da inicialização do servidor HTTP.
